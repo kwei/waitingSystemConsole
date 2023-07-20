@@ -1,8 +1,6 @@
 import {MONGO_COLLECTION_ACCOUNT, MONGO_DB_NAME} from "@/utils/resource";
 import {QueryType} from "@/app/api/account/route";
-
-const dev = process.env.NODE_ENV !== 'production'
-const BASE_URL = dev ? 'http://localhost:3000' : 'https://waiting-system-console.vercel.app'
+import {BASE_URL} from "@/app/api/source";
 
 export function queryAccount<T>(params: T) {
     return fetch(`${BASE_URL}/api/account?db=${MONGO_DB_NAME}&collection=${MONGO_COLLECTION_ACCOUNT}`, {
