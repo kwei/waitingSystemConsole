@@ -15,11 +15,16 @@ export const LoginForm = () => {
     }, [session, status, router])
 
     const handleSignIn = () => {
-        signIn().finally()
+        signIn('credentials', {
+            username: 'test',
+            password: '123456',
+            redirect: true,
+            callbackUrl: '/'
+        }).finally()
     }
 
     const handleSignOut = () => {
-        signOut().finally()
+        signOut({ redirect: true, callbackUrl: '/login' }).finally()
     }
 
     return (

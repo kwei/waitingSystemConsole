@@ -1,12 +1,11 @@
 import CredentialsProvider from "next-auth/providers/credentials"
-import NextAuth, {Account, AuthOptions, Profile, User} from "next-auth"
-import {AdapterUser} from "next-auth/adapters";
-import {queryAccount} from "@/app/api/account/queryAccount";
+import NextAuth, {AuthOptions, User} from "next-auth"
+import {queryAccount} from "@/app/api/account/queryAccount"
 
 const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
-            id: "",
+            id: "credentials",
             type: "credentials",
             name: 'Credentials',
             credentials: {
@@ -16,7 +15,7 @@ const authOptions: AuthOptions = {
             async authorize(credentials) {
                 console.log("Credentials authorize: ", credentials)
                 if (credentials) {
-                    const res = await queryAccount<string>({
+                    const res = await queryAccount<Record<string, string>>({
                         name: credentials.username,
                         password: credentials.password
                     })
@@ -28,26 +27,11 @@ const authOptions: AuthOptions = {
         })
     ],
     secret: process.env.NEXTAUTH_SECRET,
-    session: { strategy: "jwt" },
     debug: process.env.NODE_ENV !== "production",
     callbacks: {
-        jwt: async ({ token, user }) => {
-            if (user) token = user as unknown as { [key: string]: any }
-            console.log(token)
-            return token
-        },
-        session: async ({ session, token }) => {
-            session.user = { ...token }
-            return session
-        },
         async signIn(params) {
-            console.log("signIn callback: ", params.credentials)
+            console.log("signIn callback: ", params)
             return true
-        },
-        async redirect({ url, baseUrl }) {
-            if (url.startsWith("/")) return `${baseUrl}${url}`
-            else if (new URL(url).origin === baseUrl) return url
-            return baseUrl
         }
     }
 }
