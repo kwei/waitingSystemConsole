@@ -21,7 +21,7 @@ const authOptions: AuthOptions = {
                     })
                     console.log(res)
                     if (!res) return null
-                    return { id: res._id.toString(), name: res.name } as User
+                    return { id: res._id.toString(), name: res.name, admin: res.admin } as User
                 } else return null
             }
         })

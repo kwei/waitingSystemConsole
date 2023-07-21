@@ -19,7 +19,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
           <body className={inter.className}>
               <Provider>
                   <Header />
-                  <main>{children}</main>
+                  <main className='flex-1 flex w-full items-center'>{children}</main>
                   <Footer />
               </Provider>
           </body>
