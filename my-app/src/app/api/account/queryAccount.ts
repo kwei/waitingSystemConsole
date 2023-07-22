@@ -2,7 +2,14 @@ import {MONGO_COLLECTION_ACCOUNT, MONGO_DB_NAME} from "@/utils/resource";
 import {QueryType} from "@/app/api/account/route";
 import {BASE_URL} from "@/app/api/source";
 
-export function queryAccount<T>(params: T) {
+export interface AccountType {
+    _id: string;
+    name: string;
+    password: string;
+    admin?: boolean;
+}
+
+export function queryAccount<T>(params: T): Promise<AccountType[]> {
     return fetch(`${BASE_URL}/api/account?db=${MONGO_DB_NAME}&collection=${MONGO_COLLECTION_ACCOUNT}`, {
         method: "POST",
         headers: {
@@ -17,7 +24,7 @@ export function queryAccount<T>(params: T) {
         if (res.ok) return res.json()
         throw res.statusText
     }).then(res => {
-        return res.data[0]
+        return res.data
     }).catch(e => {
         console.error(e)
         return null

@@ -21,7 +21,9 @@ export const Header = () => {
         <div className='flex w-full items-center border-b border-gray-df p-2 md:px-4 justify-between'>
             <div className='flex items-center'>
                 <Link className='text-sm md:text-lg px-4 py-2 select-none font-semibold' href='/'>主控台</Link>
-                <Link className='text-sm md:text-lg px-4 py-2 select-none font-semibold' href='/account'>帳號管理</Link>
+                {session?.user?.name === 'ST' &&
+                    <Link className='text-sm md:text-lg px-4 py-2 select-none font-semibold' href='/account'>帳號管理</Link>
+                }
             </div>
             {session &&
                 <span className='px-3 py-1 text-red-500 hover:cursor-pointer' onClick={handleSignOut}>登出</span>

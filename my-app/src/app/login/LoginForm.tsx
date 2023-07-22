@@ -4,6 +4,7 @@ import {signIn, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {Card} from "@/app/components/Card";
+import {Loading} from "@/app/components/Loading";
 
 
 export const LoginForm = () => {
@@ -16,7 +17,10 @@ export const LoginForm = () => {
     const [pwdWording, setPwdWording] = useState<string | null>(null)
 
     useEffect(() => {
-        if (session && status === 'authenticated') router.push('/')
+        if (session && status === 'authenticated') {
+            if (session.user?.name === 'ST') router.push('/account')
+            router.push('/')
+        }
     }, [session, status, router])
 
     const handleSignIn = () => {
@@ -33,7 +37,7 @@ export const LoginForm = () => {
                     username: name,
                     password: pwd,
                     redirect: true,
-                    callbackUrl: '/login'
+                    callbackUrl: name === 'ST' ? '/account' : '/'
                 }).finally(() => {
                     setIsLogin(false)
                 })
@@ -78,10 +82,7 @@ export const LoginForm = () => {
                 <div className='flex w-full items-center gap-4'>
                     <button className='w-full px-4 py-2 rounded-2.5 bg-blue-500' disabled={isLogin} onClick={handleSignIn}>
                         {isLogin
-                            ? <svg
-                                className={`animate-spin m-auto w-5 h-5 rounded-full border-2 border-white border-t-transparent`}
-                                viewBox="0 0 24 24"
-                            ></svg>
+                            ? <Loading />
                             : '登入'
                         }
                     </button>

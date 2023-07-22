@@ -1,9 +1,15 @@
+import {AccountDashboard} from "@/app/account/AccountDashboard";
+import {AccountContextProvider} from "@/app/account/context/AccountContextProvider";
+import QueryAccount from "@/app/account/queryAccount/QueryAccount";
 
+export default async function Home() {
 
-export default function Home() {
     return (
-        <div className="flex h-screen flex-col items-center justify-between p-2 md:p-4">
-            帳號管理
+        <div className='w-full h-full flex flex-col'>
+            <AccountContextProvider>
+                <AccountDashboard />
+                <QueryAccount />
+            </AccountContextProvider>
         </div>
     )
 }
