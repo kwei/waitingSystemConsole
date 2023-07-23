@@ -1,10 +1,11 @@
 "use client"
 
 import {Modal} from "@/app/components/Modal";
-import {forwardRef, useImperativeHandle, useRef, useState} from "react";
+import {forwardRef, useContext, useImperativeHandle, useRef, useState} from "react";
 import {Loading} from "@/app/components/Loading";
-import {MONGO_COLLECTION_ACCOUNT, MONGO_DB_NAME} from "@/utils/resource";
-import {QueryType} from "@/app/api/account/route";
+import {AccountContext} from "@/app/account/context/context";
+import {setAccount} from "@/app/api/account/setAccount";
+import {queryAllAccount} from "@/app/api/account/queryAllAccounts";
 
 interface PropsType {
     onClose?: () => void;
@@ -26,6 +27,7 @@ export const CreateAccountModal = forwardRef<CreateAccountModalRefType, PropsTyp
     const [pwdWording, setPwdWording] = useState<string | null>(null)
     const [pwdCheckWording, setPwdCheckWording] = useState<string | null>(null)
     const [isCreating, setIsCreating] = useState<boolean>(false)
+    const accountContextData = useContext(AccountContext)
 
     useImperativeHandle(ref, () => ({
         onOpen: () => handleOnOpenModal(),
@@ -57,11 +59,27 @@ export const CreateAccountModal = forwardRef<CreateAccountModalRefType, PropsTyp
             if (pwdCheck !== pwd) setPwdCheckWording('密碼不符')
 
             if (name !== '' && pwd !== '' && pwd === pwdCheck) {
-                //
+                if (accountContextData) {
+                    const [data, setData ] = accountContextData
+                    if (data?.filter(account => account.name === name)[0]) setNameWording('此帳號已設定過')
+                    else {
+                        const currentTime = new Date().getTime() + ''
+                        setIsCreating(true)
+                        setAccount({ name: name, password: pwd, createDate: currentTime, lastUpdateDate: currentTime, admin: false }).then(res => {
+                            if (res) {
+                                if (onConfirm) onConfirm()
+                            }
+                        }).finally(() => {
+                            setOpen(false)
+                            setIsCreating(false)
+                            queryAllAccount().then(res => {
+                                if (res) setData(res.filter(account => !account.admin))
+                            })
+                        })
+                    }
+                }
             }
         }
-        // if (onConfirm) onConfirm()
-        // setOpen(false)
     }
 
     const rmNameWording = () => {

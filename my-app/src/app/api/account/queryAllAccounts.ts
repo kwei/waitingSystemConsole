@@ -2,15 +2,15 @@ import {QueryType} from "@/app/api/account/route";
 import {BASE_URL} from "@/app/api/source";
 import {AccountType} from "@/app/api/auth/[...nextauth]/route";
 
-export function queryAccount<T>(params: T): Promise<AccountType[]> {
+export function queryAllAccount(): Promise<AccountType[] | null> {
     return fetch(`${BASE_URL}/api/account`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"
         },
         body: JSON.stringify({
-            type: QueryType.read,
-            query: params,
+            type: QueryType.findAll,
+            query: {},
             data: undefined
         }),
         cache: "no-cache"

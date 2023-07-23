@@ -1,5 +1,5 @@
 import {Card} from "@/app/components/Card";
-import {AccountType} from "@/app/api/account/queryAccount";
+import {AccountType} from "@/app/api/auth/[...nextauth]/route";
 
 interface PropsType {
     account: AccountType;

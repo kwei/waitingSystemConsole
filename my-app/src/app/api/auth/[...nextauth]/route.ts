@@ -2,6 +2,15 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import NextAuth, {AuthOptions, User} from "next-auth"
 import {queryAccount} from "@/app/api/account/queryAccount"
 
+export interface AccountType {
+    _id?: string;
+    name: string;
+    password: string;
+    createDate: string;
+    lastUpdateDate: string;
+    admin: boolean;
+}
+
 const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
@@ -21,7 +30,7 @@ const authOptions: AuthOptions = {
                     })
                     console.log(res[0])
                     if (!res[0]) return null
-                    return { id: res[0]._id.toString(), name: res[0].name, admin: res[0].admin } as User
+                    return { id: res[0]._id?.toString(), name: res[0].name, admin: res[0].admin } as User
                 } else return null
             }
         })

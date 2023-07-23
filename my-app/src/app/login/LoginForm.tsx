@@ -38,6 +38,10 @@ export const LoginForm = () => {
                     password: pwd,
                     redirect: true,
                     callbackUrl: name === 'ST' ? '/account' : '/'
+                }).then(res => {
+                    console.log(res)
+                }).catch(e => {
+                    console.log(e)
                 }).finally(() => {
                     setIsLogin(false)
                 })
