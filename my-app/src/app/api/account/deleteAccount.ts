@@ -1,10 +1,9 @@
 import {BASE_URL} from "@/app/api/source";
-import {MONGO_COLLECTION_ACCOUNT, MONGO_DB_NAME} from "@/utils/resource";
-import {QueryType} from "@/app/api/account/route";
+import {QueryType} from "@/utils/mongoCRUD";
 
 
-export function updateAccount<T>(params: T): Promise<boolean> {
-    return fetch(`${BASE_URL}/api/account?db=${MONGO_DB_NAME}&collection=${MONGO_COLLECTION_ACCOUNT}`, {
+export function deleteAccount<T>(params: T): Promise<boolean> {
+    return fetch(`${BASE_URL}/api/account`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"

@@ -30,7 +30,7 @@ const authOptions: AuthOptions = {
                     })
                     console.log(res[0])
                     if (!res[0]) return null
-                    return { id: res[0]._id?.toString(), name: res[0].name, admin: res[0].admin } as User
+                    return res[0] as User & AccountType
                 } else return null
             }
         })

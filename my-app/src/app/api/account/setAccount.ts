@@ -1,6 +1,6 @@
 import {BASE_URL} from "@/app/api/source";
-import {QueryType} from "@/app/api/account/route";
 import {AccountType} from "@/app/api/auth/[...nextauth]/route";
+import {QueryType} from "@/utils/mongoCRUD";
 
 
 export function setAccount(data: AccountType): Promise<boolean> {

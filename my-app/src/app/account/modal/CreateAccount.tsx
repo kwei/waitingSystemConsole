@@ -6,6 +6,7 @@ import {Loading} from "@/app/components/Loading";
 import {AccountContext} from "@/app/account/context/context";
 import {setAccount} from "@/app/api/account/setAccount";
 import {queryAllAccount} from "@/app/api/account/queryAllAccounts";
+import {useSession} from "next-auth/react";
 
 interface PropsType {
     onClose?: () => void;
@@ -28,6 +29,7 @@ export const CreateAccountModal = forwardRef<CreateAccountModalRefType, PropsTyp
     const [pwdCheckWording, setPwdCheckWording] = useState<string | null>(null)
     const [isCreating, setIsCreating] = useState<boolean>(false)
     const accountContextData = useContext(AccountContext)
+    const { data: session } = useSession()
 
     useImperativeHandle(ref, () => ({
         onOpen: () => handleOnOpenModal(),
@@ -73,7 +75,7 @@ export const CreateAccountModal = forwardRef<CreateAccountModalRefType, PropsTyp
                             setOpen(false)
                             setIsCreating(false)
                             queryAllAccount().then(res => {
-                                if (res) setData(res.filter(account => !account.admin))
+                                if (res) setData(res.filter(account => account.name !== session?.user?.name))
                             })
                         })
                     }

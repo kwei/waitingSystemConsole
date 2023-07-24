@@ -1,16 +1,17 @@
 import {BASE_URL} from "@/app/api/source";
 import {QueryType} from "@/utils/mongoCRUD";
 
-export function updateAccount<T, D>(params: T, data: D): Promise<boolean> {
-    return fetch(`${BASE_URL}/api/account`, {
+
+export function deleteWaiting<T>(params: T): Promise<boolean> {
+    return fetch(`${BASE_URL}/api/info`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"
         },
         body: JSON.stringify({
-            type: QueryType.update,
+            type: QueryType.delete,
             query: params,
-            data: data
+            data: undefined
         })
     }).then(res => {
         return res.ok

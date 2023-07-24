@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {Card} from "@/app/components/Card";
 import {Loading} from "@/app/components/Loading";
+import {ADMIN} from "@/utils/resource";
 
 
 export const LoginForm = () => {
@@ -18,8 +19,8 @@ export const LoginForm = () => {
 
     useEffect(() => {
         if (session && status === 'authenticated') {
-            if (session.user?.name === 'ST') router.push('/account')
-            router.push('/')
+            if (session.user?.name === ADMIN) router.push('/account')
+            else router.push('/')
         }
     }, [session, status, router])
 
@@ -37,7 +38,7 @@ export const LoginForm = () => {
                     username: name,
                     password: pwd,
                     redirect: true,
-                    callbackUrl: name === 'ST' ? '/account' : '/'
+                    callbackUrl: name === ADMIN ? '/account' : '/'
                 }).then(res => {
                     console.log(res)
                 }).catch(e => {

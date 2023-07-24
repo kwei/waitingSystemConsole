@@ -1,9 +1,9 @@
 import {BASE_URL} from "@/app/api/source";
-import {AccountType} from "@/app/api/auth/[...nextauth]/route";
 import {QueryType} from "@/utils/mongoCRUD";
+import {WaitingType} from "@/app/api/waiting/route";
 
-export function queryAccount<T>(params: T): Promise<AccountType[]> {
-    return fetch(`${BASE_URL}/api/account`, {
+export function queryWaiting<T>(params: T): Promise<WaitingType[]> {
+    return fetch(`${BASE_URL}/api/info`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"

@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import {MONGO_COLLECTION_ACCOUNT} from "@/utils/resource";
 import {Model, Schema} from "mongoose";
 
-interface IAccount extends Document {
+export interface IAccount extends Document {
     name: string;
     password: string;
     createDate: string;

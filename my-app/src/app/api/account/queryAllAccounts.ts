@@ -1,6 +1,6 @@
-import {QueryType} from "@/app/api/account/route";
 import {BASE_URL} from "@/app/api/source";
 import {AccountType} from "@/app/api/auth/[...nextauth]/route";
+import {QueryType} from "@/utils/mongoCRUD";
 
 export function queryAllAccount(): Promise<AccountType[] | null> {
     return fetch(`${BASE_URL}/api/account`, {
