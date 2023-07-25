@@ -14,15 +14,15 @@ export function WaitingDashboard(props: PropsType) {
 
     useEffect(() => {
         if (waitingList) {
-            setOrderedWaitingList(waitingList.sort((a, b) => a.order - b.order))
+            setOrderedWaitingList(waitingList.sort((a, b) => a.requiredTime - b.requiredTime))
         }
     }, [waitingList])
 
     return (
         <div className='flex flex-col w-full'>
             <div className="grid w-full grid-cols-12 gap-4 p-2 md:p-4">
-                {orderedWaitingList && orderedWaitingList.map(waiting => (
-                    <WaitingInfoCard key={waiting._id} waitingInfo={waiting} />
+                {orderedWaitingList && orderedWaitingList.map((waiting, index) => (
+                    <WaitingInfoCard key={waiting._id} waitingInfo={waiting} index={index} />
                 ))}
             </div>
         </div>

@@ -6,7 +6,6 @@ export interface IWaiting extends Document {
     name: string;
     studentId: string;
     phone: string;
-    order: number;
     requiredTime: number;
     finishedTime: number;
     status: waitingStatus;
@@ -18,11 +17,16 @@ export enum waitingStatus {
     canceled
 }
 
+export const waitingStatusStr: Record<string, string> = {
+    [waitingStatus.completed]: '完成',
+    [waitingStatus.waiting]: '等待中',
+    [waitingStatus.canceled]: '取消'
+}
+
 const WaitingSchema = new Schema({
     name: { type: String, required: true },
     studentId: { type: String, required: true },
     phone: { type: String, required: true },
-    order: { type: Number, required: true },
     requiredTime: { type: Number, required: true },
     finishedTime: { type: Number, required: true },
     status: { type: Number, required: true }
