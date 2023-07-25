@@ -1,9 +1,13 @@
+import {queryAllWaiting} from "@/app/api/waiting/queryAllWaiting";
+import {WaitingDashboard} from "@/app/WaitingDashboard";
 
+const fetchAllWaiting = async () => await queryAllWaiting()
 
-export default function Home() {
-  return (
-    <div className="flex h-screen flex-col items-center justify-between p-2 md:p-4">
-      主控台
-    </div>
-  )
+export default async function Home() {
+    const allWaiting = await fetchAllWaiting()
+    return (
+        <div className="w-full h-full flex flex-col">
+            <WaitingDashboard waitingList={allWaiting} />
+        </div>
+    )
 }

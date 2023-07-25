@@ -12,11 +12,7 @@ export const Header = () => {
     const pathname = usePathname()
 
     useEffect(() => {
-        console.log(pathname)
-    }, [pathname])
-
-    useEffect(() => {
-        if (!session || status !== 'authenticated') router.push('/login')
+        if (!session && status !== 'loading') router.push('/login')
     }, [session, status, router])
 
     const handleSignOut = () => {

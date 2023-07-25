@@ -28,10 +28,12 @@ const authOptions: AuthOptions = {
                         name: credentials.username,
                         password: credentials.password
                     })
-                    console.log(res[0])
-                    if (!res[0]) return null
-                    return res[0] as User & AccountType
-                } else return null
+                    if (res) {
+                        console.log(res[0])
+                        if (res[0]) return res[0] as User & AccountType
+                    }
+                }
+                return null
             }
         })
     ],

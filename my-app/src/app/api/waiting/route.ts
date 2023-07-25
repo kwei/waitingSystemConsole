@@ -1,12 +1,16 @@
 import {NextRequest} from "next/server";
 import {mongoCRUD} from "@/utils/mongoCRUD";
-import WaitingModel, {IWaiting} from "@/models/Waiting";
+import WaitingModel, {IWaiting, waitingStatus} from "@/models/Waiting";
 
 export interface WaitingType {
+    _id?: string;
     name: string;
-    id: string;
+    studentId: string;
     phone: string;
-    no: number;
+    order: number;
+    requiredTime: number;
+    finishedTime: number;
+    status: waitingStatus;
 }
 
 export async function POST(req: NextRequest, ) {

@@ -1,5 +1,5 @@
 
-export const formatDateString = (dateStr: string) => {
+export const formatDateString = (dateStr: string | number) => {
     const date = new Date(Number(dateStr))
     const year = date.getFullYear()
     const month = date.getMonth() + 1

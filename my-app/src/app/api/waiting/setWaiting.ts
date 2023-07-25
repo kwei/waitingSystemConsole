@@ -4,7 +4,7 @@ import {WaitingType} from "@/app/api/waiting/route";
 
 
 export function setWaiting(data: WaitingType): Promise<boolean> {
-    return fetch(`${BASE_URL}/api/info`, {
+    return fetch(`${BASE_URL}/api/waiting`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"

@@ -2,7 +2,7 @@ import {BASE_URL} from "@/app/api/source";
 import {AccountType} from "@/app/api/auth/[...nextauth]/route";
 import {QueryType} from "@/utils/mongoCRUD";
 
-export function queryAccount<T>(params: T): Promise<AccountType[]> {
+export function queryAccount<T>(params: T): Promise<AccountType[] | null> {
     return fetch(`${BASE_URL}/api/account`, {
         method: "POST",
         headers: {

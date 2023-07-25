@@ -2,7 +2,7 @@ import {BASE_URL} from "@/app/api/source";
 import {QueryType} from "@/utils/mongoCRUD";
 
 export function updateWaiting<T, D>(params: T, data: D): Promise<boolean> {
-    return fetch(`${BASE_URL}/api/info`, {
+    return fetch(`${BASE_URL}/api/waiting`, {
         method: "POST",
         headers: {
             "Context-type": "application/json"
