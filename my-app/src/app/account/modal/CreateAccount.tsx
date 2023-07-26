@@ -1,8 +1,8 @@
 "use client"
 
-import {Modal} from "@/app/components/Modal";
+import {Modal} from "@/components/Modal";
 import {forwardRef, useContext, useImperativeHandle, useRef, useState} from "react";
-import {Loading} from "@/app/components/Loading";
+import {Loading} from "@/components/Loading";
 import {AccountContext} from "@/app/account/context/context";
 import {setAccount} from "@/app/api/account/setAccount";
 import {queryAllAccount} from "@/app/api/account/queryAllAccounts";

@@ -1,4 +1,4 @@
-import {Card} from "@/app/components/Card";
+import {Card} from "@/components/Card";
 import {AccountType} from "@/app/api/auth/[...nextauth]/route";
 import {formatDateString} from "@/utils/formatDateString";
 import {IoPencilOutline} from "react-icons/io5";

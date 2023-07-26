@@ -4,6 +4,7 @@ import {WaitingType} from "@/app/api/waiting/route";
 import {WaitingInfoCard} from "@/app/WaitingInfoCard";
 import {useContext, useEffect, useState} from "react";
 import {WaitingContext} from "@/app/account/context/context";
+import {ToolBox} from "@/app/ToolBox";
 
 export function WaitingDashboard() {
     const contextData = useContext(WaitingContext)
@@ -22,6 +23,7 @@ export function WaitingDashboard() {
 
     return (
         <div className='flex flex-col w-full'>
+            <ToolBox />
             <div className="grid w-full grid-cols-12 gap-4 p-2 md:p-4">
                 {orderedWaitingList && orderedWaitingList.map((waiting, index) => (
                     <WaitingInfoCard key={waiting._id} waitingInfo={waiting} index={index} />

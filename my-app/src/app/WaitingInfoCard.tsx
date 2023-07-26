@@ -1,15 +1,15 @@
 "use client"
 
 import {MajorWaitingInfo, WaitingType} from "@/app/api/waiting/route";
-import {Card} from "@/app/components/Card";
+import {Card} from "@/components/Card";
 import {formatDateString} from "@/utils/formatDateString";
 import {waitingStatus, waitingStatusStr} from "@/models/Waiting";
 import {useCallback, useContext, useMemo, useRef, useState} from "react";
 import {updateWaiting} from "@/app/api/waiting/updateWaiting";
-import {Loading} from "@/app/components/Loading";
+import {Loading} from "@/components/Loading";
 import {WaitingContext} from "@/app/account/context/context";
 import {queryAllWaiting} from "@/app/api/waiting/queryAllWaiting";
-import {ConfirmModal, ConfirmModalRefType} from "@/app/components/ConfirmModal";
+import {ConfirmModal, ConfirmModalRefType} from "@/components/ConfirmModal";
 
 interface PropsType {
     waitingInfo: WaitingType;

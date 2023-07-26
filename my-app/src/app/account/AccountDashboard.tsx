@@ -3,7 +3,7 @@
 import {useContext} from "react";
 import {InfoCard} from "@/app/account/InfoCard";
 import {AccountContext} from "@/app/account/context/context";
-import {Loading} from "@/app/components/Loading";
+import {Loading} from "@/components/Loading";
 import {ToolBox} from "@/app/account/ToolBox";
 
 export function AccountDashboard() {
@@ -17,7 +17,7 @@ export function AccountDashboard() {
         )
     }
 
-    const [accounts, setAccounts] = accountContextData
+    const [accounts, ] = accountContextData
 
     return (
         <div className='flex flex-col w-full'>

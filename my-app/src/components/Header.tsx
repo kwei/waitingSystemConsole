@@ -4,7 +4,7 @@ import {signOut, useSession} from "next-auth/react";
 import {useEffect} from "react";
 import {usePathname, useRouter} from "next/navigation";
 import {ADMIN} from "@/utils/resource";
-import {NavLink} from "@/app/components/NavLink";
+import {NavLink} from "@/components/NavLink";
 
 export const Header = () => {
     const router = useRouter()

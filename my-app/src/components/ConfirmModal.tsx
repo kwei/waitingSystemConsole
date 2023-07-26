@@ -1,5 +1,5 @@
 import {forwardRef, useImperativeHandle, useState} from "react";
-import {Modal} from "@/app/components/Modal";
+import {Modal} from "@/components/Modal";
 
 interface PropsType {
     title: string;

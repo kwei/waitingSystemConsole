@@ -3,8 +3,8 @@
 import {signIn, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
-import {Card} from "@/app/components/Card";
-import {Loading} from "@/app/components/Loading";
+import {Card} from "@/components/Card";
+import {Loading} from "@/components/Loading";
 import {ADMIN} from "@/utils/resource";
 
 

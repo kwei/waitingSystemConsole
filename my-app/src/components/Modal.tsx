@@ -1,5 +1,5 @@
-import {ReactNode, useState} from "react";
-import {Card} from "@/app/components/Card";
+import {ReactNode} from "react";
+import {Card} from "@/components/Card";
 import { IoClose } from "react-icons/io5";
 
 interface PropsType {
