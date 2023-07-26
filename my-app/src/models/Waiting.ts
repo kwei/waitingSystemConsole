@@ -14,13 +14,15 @@ export interface IWaiting extends Document {
 export enum waitingStatus {
     waiting,
     completed,
-    canceled
+    canceled,
+    going
 }
 
 export const waitingStatusStr: Record<string, string> = {
     [waitingStatus.completed]: '完成',
     [waitingStatus.waiting]: '等待中',
-    [waitingStatus.canceled]: '取消'
+    [waitingStatus.canceled]: '取消',
+    [waitingStatus.going]: '進行中'
 }
 
 const WaitingSchema = new Schema({

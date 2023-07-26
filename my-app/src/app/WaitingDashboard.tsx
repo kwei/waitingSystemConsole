@@ -2,21 +2,23 @@
 
 import {WaitingType} from "@/app/api/waiting/route";
 import {WaitingInfoCard} from "@/app/WaitingInfoCard";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {WaitingContext} from "@/app/account/context/context";
 
-interface PropsType {
-    waitingList: WaitingType[] | null;
-}
-
-export function WaitingDashboard(props: PropsType) {
-    const { waitingList } = props
+export function WaitingDashboard() {
+    const contextData = useContext(WaitingContext)
     const [orderedWaitingList, setOrderedWaitingList] = useState<WaitingType[] | null>(null)
 
     useEffect(() => {
-        if (waitingList) {
-            setOrderedWaitingList(waitingList.sort((a, b) => a.requiredTime - b.requiredTime))
+        if (contextData) {
+            const [data, ] = contextData
+            if (data) {
+                setOrderedWaitingList(data.sort((a, b) => (
+                    a.requiredTime - b.requiredTime
+                )))
+            }
         }
-    }, [waitingList])
+    }, [contextData])
 
     return (
         <div className='flex flex-col w-full'>

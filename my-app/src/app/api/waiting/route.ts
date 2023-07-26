@@ -13,6 +13,12 @@ export interface WaitingType {
     status: waitingStatus;
 }
 
+export interface MajorWaitingInfo {
+    name: string;
+    studentId: string;
+    phone: string;
+}
+
 export async function POST(req: NextRequest, ) {
     return mongoCRUD<IWaiting>(req, WaitingModel)
 }
