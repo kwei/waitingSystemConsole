@@ -30,7 +30,7 @@ export function WaitingInfoCard(props: PropsType) {
         name: waitingInfo.name,
         studentId: waitingInfo.studentId,
         phone: waitingInfo.phone
-    }), [])
+    }), [waitingInfo.name, waitingInfo.studentId,  waitingInfo.phone])
 
     const handleOpenCancelModal = () => {
         if (cancelModalRef.current) cancelModalRef.current.onOpen()
@@ -51,7 +51,7 @@ export function WaitingInfoCard(props: PropsType) {
                 setData(res)
             }
         })
-    }, [])
+    }, [contextData])
 
     const handleCancelWaiting = useCallback(() => {
         const data: WaitingType = {
@@ -63,7 +63,7 @@ export function WaitingInfoCard(props: PropsType) {
             setIsCanceling(false)
             reFetch()
         })
-    }, [majorInfo])
+    }, [waitingInfo, majorInfo, reFetch])
 
     const handleAcceptWaiting = useCallback(() => {
         const data: WaitingType = {
@@ -75,7 +75,7 @@ export function WaitingInfoCard(props: PropsType) {
             setIsConfirming(false)
             reFetch()
         })
-    }, [majorInfo])
+    }, [waitingInfo, majorInfo, reFetch])
 
     const handleCompleteWaiting = useCallback(() => {
         const data: WaitingType = {
@@ -87,7 +87,7 @@ export function WaitingInfoCard(props: PropsType) {
             setIsCompleting(false)
             reFetch()
         })
-    }, [majorInfo])
+    }, [waitingInfo, majorInfo, reFetch])
 
 
     return (

@@ -1,10 +1,10 @@
 "use client"
 
 import {WaitingType} from "@/app/api/waiting/route";
-import {WaitingInfoCard} from "@/app/WaitingInfoCard";
+import {WaitingInfoCard} from "@/app/(site)/WaitingInfoCard";
 import {useContext, useEffect, useState} from "react";
 import {WaitingContext} from "@/app/account/context/context";
-import {ToolBox} from "@/app/ToolBox";
+import {ToolBox} from "@/app/(site)/ToolBox";
 
 export function WaitingDashboard() {
     const contextData = useContext(WaitingContext)

@@ -1,15 +1,14 @@
-import {queryAllWaiting} from "@/app/api/waiting/queryAllWaiting";
-import {WaitingDashboard} from "@/app/WaitingDashboard";
+import {WaitingDashboard} from "@/app/(site)/WaitingDashboard";
 import {AccountContextProvider} from "@/app/account/context/WaitingContextProvider";
-
-const fetchAllWaiting = async () => await queryAllWaiting()
+import {QueryWaitingAPI} from "@/app/(site)/queryWaitingAPI/QueryWaitingAPI";
 
 export default async function Home() {
-    const allWaiting = await fetchAllWaiting()
     return (
         <div className="w-full h-full flex flex-col">
-            <AccountContextProvider data={allWaiting}>
+            <AccountContextProvider data={null}>
                 <WaitingDashboard />
+
+                <QueryWaitingAPI />
             </AccountContextProvider>
         </div>
     )
